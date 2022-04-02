@@ -12,11 +12,13 @@ class BooksController < ApplicationController
     
     # para criar um novo livro
     def new
-        @book = Book.new
+        # @book = Book.new 
+        # para relacionar o book ao usuario, todos os book tera um id de usuario 
+        @book = current_user.books.build
     end
     # pega os parametros ou as informações inserida no formulario para criar um novo book 
     def create
-        @book = Book.new(book_params)
+        @book = current_user.books.build(book_params)
         # depois de salvar 
         if @book.save
             redirect_to root_path

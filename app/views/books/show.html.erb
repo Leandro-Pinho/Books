@@ -3,5 +3,11 @@
 <p><%= @book.description %></p>
 
 <%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_book_path(@book) %>
-<%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<% if user_signed_in? %>
+    <%# só pode editar e deletar os books que criou  %>
+    <% if @book.user_id == current_user.id %>
+        <%= link_to "Edit", edit_book_path(@book) %>
+        <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+<% end %>
