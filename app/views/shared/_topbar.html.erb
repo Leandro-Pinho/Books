@@ -14,12 +14,25 @@
           <a class="nav-link" href="#">Link</a>
         </li> %>
       </ul>
-      <div class="nav">
+      <div class="nav nav-item">
+        <%# para filtrar por categoria %>
+        <ul class="nav-item dropdown navbar-nav">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% Category.all.each do |category| %>
+            <li><%= link_to category.name, books_path(category: category.name), class: "dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </ul>
+        <%# para adicionar um novo livro  %>
         <ul class="navbar-nav my-1">
           <% if user_signed_in? %>
             <li><%= link_to "Add book", new_book_path, class: "dropdown-item" %></li>
           <% end %>
         </ul>
+        <%# login, logout e cadastro  %>
         <ul class="nav-item dropdown navbar-nav">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
