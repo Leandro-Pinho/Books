@@ -1,10 +1,25 @@
-<h2><%= @book.title %></h2>
-<h3><%= @book.author %></h3>
-<h4>Categoria: <%= @book.category.name %></h4>
-<p><%= @book.description %></p>
+
+<div class="row">
+    <div class="col-md-4 col-sm-3">
+        <%= image_tag(@book.picture_url, width: 300, height: 420) if @book.picture.present? %>
+    </div>
+    <div class="col-md-8">
+        <h2><%= @book.title %></h2>
+        <h3><%= @book.author %></h3>
+        <h4>Categoria: <%= @book.category.name %></h4>
+        <p><%= @book.description %></p>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="col-md-8">
+    <!-- quando fazer a reviews/rating vai aqui -->
+  </div>
+</div>
 
 <%= link_to "Back", root_path %>
 
+<%# só aparece os butões se estiver logado e for o que criou os books  %>
 <% if user_signed_in? %>
     <%# só pode editar e deletar os books que criou  %>
     <% if @book.user_id == current_user.id %>

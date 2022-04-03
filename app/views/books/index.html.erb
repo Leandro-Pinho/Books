@@ -1,11 +1,22 @@
 <%# trazer o nome da categoria selecionada %>
 <h1 class="current-category"><%= params[:category] %></h1>
-<%# se nao estiver nenhum livro na categoria selecionada  %>
-<% if @books.count == 0 %>
-  <h1>There are no books currently in this category</h1>
-<% else %>
-  <% @books.each do |book| %>
-    <h2><%= link_to book.title, book_path(book) %></h2>
-  <% end %>
-<% end %>
+
+<div class="mt-2">
+  <div class="row">
+    <%# se nao estiver nenhum livro na categoria selecionada  %>
+    <% if @books.count == 0 %>
+      <h1>There are no books currently in this category</h1>
+    <% else %>
+      <% @books.each do |book| %>
+        <div class="col-lg-3 col-md-5 col-sm-6 my-2">
+          <%# faz a imagem torna um link  %>
+          <a href="/books/<%= book.id %>"> 
+            <%= image_tag book.picture_url, width: 250, height: 350 if book.picture.present? %>
+          </a>
+            <%# <h5><%= link_to book.title, book_path(book) ></h5>  %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 

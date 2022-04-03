@@ -60,7 +60,7 @@ class BooksController < ApplicationController
     private 
     # permiti a alterar o campos title, description, author 
     def book_params
-        params.require(:book).permit(:title, :description, :author, :category_id)
+        params.require(:book).permit(:title, :description, :author, :category_id, :picture)
     end
     # para encontrar um book pelo id 
     def find_book 
